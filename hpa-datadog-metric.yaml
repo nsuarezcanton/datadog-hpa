@@ -1,0 +1,19 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: custom-metrics-ext
+spec:
+  minReplicas: 1
+  maxReplicas: 3
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment
+  metrics:
+    - type: External
+      external:
+        metric:
+          name: datadogmetric@default:hpa-metric
+        target:
+          type: Value
+          value: 0.75

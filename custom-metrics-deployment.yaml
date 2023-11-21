@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-metrics-deployment
+  labels:
+    app: custom-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-metrics
+  template:
+    metadata:
+      labels:
+        app: custom-metrics
+    spec:
+      containers:
+        - name: custom-metrics
+          image: soloeles/datadog-hpa:latest
+          env:
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP

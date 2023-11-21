@@ -1,0 +1,6 @@
+apiVersion: datadoghq.com/v1alpha1
+kind: DatadogMetric
+metadata:
+  name: hpa-metric
+spec:
+  query: avg:datadog.examples.kubernetes_hpa.custom{*} by {host}.rollup(avg, 60)

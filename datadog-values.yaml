@@ -1,0 +1,14 @@
+datadog:
+  apiKeyExistingSecret: datadog-secret
+  appKeyExistingSecret: datadog-secret
+  site: datadoghq.com
+  dogstatsd:
+    port: 8125
+    useHostPort: true
+    nonLocalTraffic: true
+
+clusterAgent:
+  enabled: true
+  metricsProvider:
+    enabled: true
+    useDatadogMetrics: true
